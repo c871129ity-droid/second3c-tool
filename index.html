@@ -8,357 +8,293 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f3ee;--surface:#ffffff;--surface2:#faf9f6;
-  --border:#e2ddd6;--border2:#d4cfc7;
-  --text:#1a1714;--text2:#6b6560;--text3:#9e9892;
+  --bg:#f5f3ee;--surface:#fff;--surface2:#faf9f6;
+  --border:#e2ddd6;--text:#1a1714;--text2:#6b6560;--text3:#9e9892;
   --accent:#c8401a;--accent-light:#fdf0ec;
   --accent2:#2d5a8e;--accent2-light:#eef3fa;
   --green:#2a7a4b;--green-light:#eef7f2;
-  --tag-bg:#f0ece6;
   --mono:'DM Mono',monospace;--sans:'Noto Sans TC',sans-serif;
 }
 body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
 .header{background:var(--text);color:#f5f3ee;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
-.brand-badge{background:var(--accent);color:white;font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:2px;text-transform:uppercase}
-.brand-name{font-size:15px;font-weight:700;margin-left:14px}
-.header-sub{font-family:var(--mono);font-size:11px;color:#9e9892;letter-spacing:1px}
+.badge{background:var(--accent);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:2px}
 .main{max-width:1100px;margin:0 auto;padding:32px 20px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:768px){.main{grid-template-columns:1fr;padding:20px 14px}}
+@media(max-width:768px){.main{grid-template-columns:1fr}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
-.card-header{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.card-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.card-title{font-size:15px;font-weight:700}.card-desc{font-size:11.5px;color:var(--text3);margin-top:2px}
+.card-hd{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .field{margin-bottom:14px}
-.field-label{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px;letter-spacing:.3px}
-.required{color:var(--accent);font-size:11px;margin-left:4px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-input[type=text],select,textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+.lbl{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px;display:block}
+.req{color:var(--accent);font-size:11px;margin-left:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+input,select,textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;appearance:none}
 input:focus,select:focus,textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(45,90,142,.08)}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
 textarea{resize:vertical;min-height:80px;line-height:1.6}
-.grade-selector{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.grade-btn{border:1.5px solid var(--border);background:var(--surface2);border-radius:10px;padding:10px 4px;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--sans)}
-.grade-btn .gl{display:block;font-size:20px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
-.grade-btn .gd{font-size:10px;color:var(--text3);line-height:1.3}
-.grade-btn.selected{border-color:var(--accent);background:var(--accent-light)}
-.grade-btn.selected .gl{color:var(--accent)}.grade-btn.selected .gd{color:var(--accent);opacity:.7}
-.accessory-grid{display:flex;flex-wrap:wrap;gap:8px}
-.acc-tag{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;transition:all .15s;font-family:var(--sans);color:var(--text)}
-.acc-tag.checked{background:var(--accent2-light);border-color:var(--accent2);color:var(--accent2);font-weight:600}
-.btn-generate{width:100%;background:var(--text);color:#f5f3ee;border:none;border-radius:12px;padding:14px 24px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-top:8px}
-.btn-generate:hover{background:#2d2a26;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
-.btn-generate:disabled{background:var(--border2);color:var(--text3);cursor:not-allowed;transform:none;box-shadow:none}
-.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
-.loading .spinner{display:block}.loading .btn-icon{display:none}
+.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.gb{border:1.5px solid var(--border);background:var(--surface2);border-radius:10px;padding:10px 4px;cursor:pointer;text-align:center;font-family:var(--sans);transition:all .15s}
+.gb .gl{display:block;font-size:20px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
+.gb .gd{font-size:10px;color:var(--text3);line-height:1.3}
+.gb.on{border-color:var(--accent);background:var(--accent-light)}
+.gb.on .gl{color:var(--accent)}.gb.on .gd{color:var(--accent);opacity:.7}
+.accs{display:flex;flex-wrap:wrap;gap:8px}
+.ac{padding:6px 12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;font-family:var(--sans);color:var(--text);transition:all .15s}
+.ac.on{background:var(--accent2-light);border-color:var(--accent2);color:var(--accent2);font-weight:600}
+.btn{width:100%;background:var(--text);color:#f5f3ee;border:none;border-radius:12px;padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;transition:all .2s}
+.btn:hover{background:#2d2a26;transform:translateY(-1px)}
+.btn:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.loading .spin{display:block}.loading .bi{display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
-.output-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--text3)}
-.placeholder-icon{font-size:40px;opacity:.3}.placeholder-text{font-size:13px;text-align:center;line-height:1.7}
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--text3);text-align:center;font-size:13px;line-height:1.7}
 .hidden{display:none}
-.status-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:18px}
-.status-done{background:var(--green-light);color:var(--green);border:1px solid rgba(42,122,75,.2)}
-.status-error{background:#fff5f5;color:#dc2626;border:1px solid #fecaca}
-.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
-.output-block{margin-bottom:20px}
-.output-block-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-.output-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.85;white-space:pre-wrap;color:var(--text);position:relative;padding-right:72px}
-.output-title-box{font-weight:600;font-size:14px;line-height:1.5}
-.copy-btn{position:absolute;top:10px;right:10px;background:var(--tag-bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:10px;cursor:pointer;color:var(--text2);transition:all .15s}
-.copy-btn:hover{background:var(--text);color:white;border-color:var(--text)}
-.copy-btn.copied{background:var(--green);color:white;border-color:var(--green)}
-.copy-all-btn{width:100%;background:var(--green-light);border:1.5px solid var(--green);border-radius:10px;padding:12px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--green);cursor:pointer;transition:all .15s}
-.copy-all-btn:hover{background:var(--green);color:white}
-.loading-center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px;color:var(--accent2)}
-.big-spinner{width:32px;height:32px;border:3px solid #eef3fa;border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite}
+.spin-center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px;color:var(--accent2)}
+.spin-lg{width:32px;height:32px;border:3px solid #eef3fa;border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite}
+.bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:18px}
+.bar-ok{background:var(--green-light);color:var(--green);border:1px solid rgba(42,122,75,.2)}
+.bar-err{background:#fff5f5;color:#dc2626;border:1px solid #fecaca}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.blk{margin-bottom:20px}
+.blk-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 72px 14px 16px;font-size:13px;line-height:1.85;white-space:pre-wrap;color:var(--text);position:relative;min-height:48px}
+.box-title{font-weight:600;font-size:14px;line-height:1.5}
+.cp{position:absolute;top:10px;right:10px;background:#f0ece6;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:10px;cursor:pointer;color:var(--text2);transition:all .15s}
+.cp:hover{background:var(--text);color:#fff}.cp.ok{background:var(--green);color:#fff;border-color:var(--green)}
+.ca{width:100%;background:var(--green-light);border:1.5px solid var(--green);border-radius:10px;padding:12px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--green);cursor:pointer;transition:all .15s}
+.ca:hover,.ca.ok{background:var(--green);color:#fff}
 .tips{background:#f7f5f0;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:16px}
-.tips-title{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;font-family:var(--mono)}
-.tip-item{font-size:12px;color:var(--text2);margin-bottom:6px;padding-left:14px;position:relative;line-height:1.5}
-.tip-item::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:10px}
+.tips h4{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;font-family:var(--mono)}
+.tip{font-size:12px;color:var(--text2);margin-bottom:6px;padding-left:14px;position:relative;line-height:1.5}
+.tip::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:10px}
 </style>
 </head>
 <body>
 <div class="header">
-  <div style="display:flex;align-items:center">
-    <span class="brand-badge">2ND</span>
-    <span class="brand-name">Second 3C 次數科技</span>
+  <div style="display:flex;align-items:center;gap:14px">
+    <span class="badge">2ND</span>
+    <span style="font-size:15px;font-weight:700">Second 3C 次數科技</span>
   </div>
-  <span class="header-sub">AI 上架描述產生器</span>
+  <span style="font-family:var(--mono);font-size:11px;color:#9e9892;letter-spacing:1px">AI 上架描述產生器</span>
 </div>
 
 <div class="main">
   <div>
     <div class="card">
-      <div class="card-header">
-        <div class="card-icon" style="background:#fdf0ec">📋</div>
-        <div>
-          <div class="card-title">填寫商品資訊</div>
-          <div class="card-desc">填完後點「產生描述」，幾秒內完成</div>
+      <div class="card-hd">
+        <div class="icon" style="background:#fdf0ec">📋</div>
+        <div><div style="font-size:15px;font-weight:700">填寫商品資訊</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">填完後點「產生描述」，幾秒內完成</div></div>
+      </div>
+
+      <div class="row2">
+        <div><label class="lbl">廠牌<span class="req">必填</span></label>
+        <select id="brand">
+          <option value="">選擇廠牌</option>
+          <option>Apple</option><option>Samsung</option><option>ASUS</option><option>Lenovo</option>
+          <option>HP</option><option>Dell</option><option>Sony</option><option>Nintendo</option>
+          <option>Microsoft</option><option>小米</option><option>其他</option>
+        </select></div>
+        <div><label class="lbl">商品類型<span class="req">必填</span></label>
+        <select id="cat">
+          <option value="">選擇類型</option>
+          <option>手機</option><option>平板</option><option>筆電</option><option>電玩主機</option>
+          <option>相機</option><option>鏡頭</option><option>耳機</option><option>智慧手錶</option>
+          <option>電腦主機</option><option>螢幕</option>
+        </select></div>
+      </div>
+
+      <div class="field"><label class="lbl">型號<span class="req">必填</span></label>
+        <input type="text" id="model" placeholder="例：iPhone 15 Pro 256G 黑色鈦金屬"></div>
+
+      <div class="field"><label class="lbl">商品等級<span class="req">必填</span></label>
+        <div class="grades">
+          <button class="gb" data-g="A" onclick="selGrade(this)"><span class="gl">A</span><span class="gd">近全新<br>無使用痕跡</span></button>
+          <button class="gb" data-g="B" onclick="selGrade(this)"><span class="gl">B</span><span class="gd">輕微使用<br>細紋/輕磨痕</span></button>
+          <button class="gb" data-g="C" onclick="selGrade(this)"><span class="gl">C</span><span class="gd">明顯刮傷<br>功能正常</span></button>
+          <button class="gb" data-g="D" onclick="selGrade(this)"><span class="gl">D</span><span class="gd">損傷明顯<br>售價反映</span></button>
         </div>
       </div>
 
-      <div class="field-row">
-        <div class="field">
-          <div class="field-label">廠牌<span class="required">必填</span></div>
-          <select id="brand">
-            <option value="">選擇廠牌</option>
-            <option>Apple</option><option>Samsung</option><option>ASUS</option>
-            <option>Lenovo</option><option>HP</option><option>Dell</option>
-            <option>Sony</option><option>Nintendo</option><option>Microsoft</option>
-            <option>小米</option><option>其他</option>
-          </select>
-        </div>
-        <div class="field">
-          <div class="field-label">商品類型<span class="required">必填</span></div>
-          <select id="category">
-            <option value="">選擇類型</option>
-            <option>手機</option><option>平板</option><option>筆電</option>
-            <option>電玩主機</option><option>相機</option><option>鏡頭</option>
-            <option>耳機</option><option>智慧手錶</option><option>電腦主機</option><option>螢幕</option>
-          </select>
+      <div class="field"><label class="lbl">外觀描述</label>
+        <textarea id="appear" placeholder="例：正面螢幕無刮傷，背面右下角有一道細紋約1cm，邊框有輕微磨痕"></textarea></div>
+
+      <div class="field"><label class="lbl">功能狀況</label>
+        <input type="text" id="func" placeholder="例：功能正常，電池健康度 89%，無零件警示"></div>
+
+      <div class="field"><label class="lbl">附件</label>
+        <div class="accs">
+          <button class="ac" data-v="原廠充電器" onclick="togAcc(this)">🔌 原廠充電器</button>
+          <button class="ac" data-v="原廠盒子" onclick="togAcc(this)">📦 原廠盒子</button>
+          <button class="ac" data-v="傳輸線" onclick="togAcc(this)">🪢 傳輸線</button>
+          <button class="ac" data-v="保護貼（已貼）" onclick="togAcc(this)">🛡️ 保護貼</button>
+          <button class="ac" data-v="手寫筆" onclick="togAcc(this)">✏️ 手寫筆</button>
+          <button class="ac" data-v="無附件" onclick="togAcc(this)">❌ 無附件</button>
         </div>
       </div>
 
-      <div class="field">
-        <div class="field-label">型號<span class="required">必填</span></div>
-        <input type="text" id="model" placeholder="例：iPhone 15 Pro 256G 黑色鈦金屬">
-      </div>
+      <div class="field"><label class="lbl">備注（選填）</label>
+        <input type="text" id="notes" placeholder="例：原廠保固至2026-06-07、MDM 已解除…"></div>
 
-      <div class="field">
-        <div class="field-label">商品等級<span class="required">必填</span></div>
-        <div class="grade-selector">
-          <button class="grade-btn" data-grade="A" onclick="selectGrade(this)">
-            <span class="gl">A</span><span class="gd">近全新<br>無使用痕跡</span>
-          </button>
-          <button class="grade-btn" data-grade="B" onclick="selectGrade(this)">
-            <span class="gl">B</span><span class="gd">輕微使用<br>細紋/輕磨痕</span>
-          </button>
-          <button class="grade-btn" data-grade="C" onclick="selectGrade(this)">
-            <span class="gl">C</span><span class="gd">明顯刮傷<br>功能正常</span>
-          </button>
-          <button class="grade-btn" data-grade="D" onclick="selectGrade(this)">
-            <span class="gl">D</span><span class="gd">損傷明顯<br>售價反映</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="field-label">外觀描述</div>
-        <textarea id="appearance" placeholder="例：正面螢幕無刮傷，背面右下角有一道細紋約1cm，邊框有輕微磨痕"></textarea>
-      </div>
-
-      <div class="field">
-        <div class="field-label">功能狀況</div>
-        <input type="text" id="funcStatus" placeholder="例：功能正常，電池健康度 89%，無零件警示">
-      </div>
-
-      <div class="field">
-        <div class="field-label">附件</div>
-        <div class="accessory-grid">
-          <button class="acc-tag" data-val="原廠充電器" onclick="toggleAcc(this)">🔌 原廠充電器</button>
-          <button class="acc-tag" data-val="原廠盒子" onclick="toggleAcc(this)">📦 原廠盒子</button>
-          <button class="acc-tag" data-val="傳輸線" onclick="toggleAcc(this)">🪢 傳輸線</button>
-          <button class="acc-tag" data-val="保護貼（已貼）" onclick="toggleAcc(this)">🛡️ 保護貼</button>
-          <button class="acc-tag" data-val="手寫筆" onclick="toggleAcc(this)">✏️ 手寫筆</button>
-          <button class="acc-tag" data-val="無附件" onclick="toggleAcc(this)">❌ 無附件</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="field-label">備注（選填）</div>
-        <input type="text" id="notes" placeholder="例：原廠保固至2026-06-07、MDM 已解除…">
-      </div>
-
-      <button class="btn-generate" id="genBtn" onclick="generate()">
-        <div class="spinner"></div>
-        <span class="btn-icon">⚡</span>
-        <span class="btn-text">產生上架描述</span>
+      <button class="btn" id="genBtn" onclick="gen()">
+        <div class="spin"></div><span class="bi">⚡</span>
+        <span id="btnTxt">產生上架描述</span>
       </button>
     </div>
 
     <div class="tips">
-      <div class="tips-title">使用技巧</div>
-      <div class="tip-item">外觀描述越詳細，買家越安心，退貨率越低</div>
-      <div class="tip-item">電池健康度低於 80% 請在功能欄標明</div>
-      <div class="tip-item">D 級商品建議在備注說明主要損傷位置</div>
-      <div class="tip-item">產出後可自行微調再貼到蝦皮後台</div>
+      <h4>使用技巧</h4>
+      <div class="tip">外觀描述越詳細，買家越安心，退貨率越低</div>
+      <div class="tip">電池健康度低於 80% 請在功能欄標明</div>
+      <div class="tip">D 級商品建議在備注說明主要損傷位置</div>
+      <div class="tip">產出後可自行微調再貼到蝦皮後台</div>
     </div>
   </div>
 
   <div>
     <div class="card" style="min-height:500px">
-      <div class="card-header">
-        <div class="card-icon" style="background:#eef3fa">✨</div>
-        <div>
-          <div class="card-title">產生結果</div>
-          <div class="card-desc">點右上角按鈕可單獨複製各區塊</div>
-        </div>
+      <div class="card-hd">
+        <div class="icon" style="background:#eef3fa">✨</div>
+        <div><div style="font-size:15px;font-weight:700">產生結果</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">點右上角按鈕可單獨複製各區塊</div></div>
       </div>
 
-      <div id="statePlaceholder" class="output-placeholder">
-        <div class="placeholder-icon">📝</div>
-        <div class="placeholder-text">填寫左側商品資訊<br>點擊「產生上架描述」後<br>結果會顯示在這裡</div>
-      </div>
-
-      <div id="stateLoading" class="hidden">
-        <div class="loading-center">
-          <div class="big-spinner"></div>
-          <div style="font-size:13px;font-weight:500">AI 正在撰寫上架描述...</div>
+      <div id="sPh" class="ph"><div style="font-size:40px;opacity:.3">📝</div>填寫左側商品資訊<br>點擊「產生上架描述」後<br>結果會顯示在這裡</div>
+      <div id="sLd" class="hidden"><div class="spin-center"><div class="spin-lg"></div><div style="font-size:13px;font-weight:500">AI 正在撰寫上架描述...</div></div></div>
+      <div id="sEr" class="hidden"><div class="bar bar-err" id="errMsg">⚠️ 發生錯誤，請稍後重試</div></div>
+      <div id="sDn" class="hidden">
+        <div class="bar bar-ok"><div class="dot"></div>✅ 描述產生完成！可直接複製貼到蝦皮後台</div>
+        <div class="blk">
+          <div class="blk-lbl">蝦皮標題</div>
+          <div class="box box-title" id="oTitle"><button class="cp" onclick="cp('oTitle',this)">複製</button><span id="tTxt"></span></div>
         </div>
-      </div>
-
-      <div id="stateError" class="hidden">
-        <div class="status-bar status-error">⚠️ 發生錯誤，請稍後重試</div>
-      </div>
-
-      <div id="stateDone" class="hidden">
-        <div class="status-bar status-done">
-          <div class="status-dot"></div>
-          ✅ 描述產生完成！可直接複製貼到蝦皮後台
+        <div class="blk">
+          <div class="blk-lbl">商品描述</div>
+          <div class="box" id="oDesc"><button class="cp" onclick="cp('oDesc',this)">複製</button><span id="dTxt"></span></div>
         </div>
-        <div class="output-block">
-          <div class="output-block-label">蝦皮標題</div>
-          <div class="output-box output-title-box" id="outTitle">
-            <button class="copy-btn" onclick="copyBlock('outTitle',this)">複製</button>
-            <span class="txt"></span>
-          </div>
-        </div>
-        <div class="output-block">
-          <div class="output-block-label">商品描述</div>
-          <div class="output-box" id="outDesc" style="min-height:200px">
-            <button class="copy-btn" onclick="copyBlock('outDesc',this)">複製</button>
-            <span class="txt"></span>
-          </div>
-        </div>
-        <button class="copy-all-btn" id="copyAllBtn" onclick="copyAll()">
-          ✅ 複製完整描述（標題 + 內容）
-        </button>
+        <button class="ca" id="caBtn" onclick="cpAll()">✅ 複製完整描述（標題 + 內容）</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-let selectedGrade='';
-let selectedAcc=new Set();
+let grade='', accs=new Set();
 
-function selectGrade(btn){
-  document.querySelectorAll('.grade-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedGrade=btn.dataset.grade;
+function selGrade(b){
+  document.querySelectorAll('.gb').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); grade=b.dataset.g;
 }
-
-function toggleAcc(btn){
-  const val=btn.dataset.val;
-  if(selectedAcc.has(val)){selectedAcc.delete(val);btn.classList.remove('checked');}
-  else{selectedAcc.add(val);btn.classList.add('checked');}
+function togAcc(b){
+  const v=b.dataset.v;
+  accs.has(v)?(accs.delete(v),b.classList.remove('on')):(accs.add(v),b.classList.add('on'));
 }
-
 function show(id){
-  ['statePlaceholder','stateLoading','stateError','stateDone'].forEach(n=>{
-    document.getElementById(n).className = n===id
-      ? (n==='statePlaceholder'?'output-placeholder':'')
-      : 'hidden';
-  });
+  ['sPh','sLd','sEr','sDn'].forEach(n=>document.getElementById(n).className=n===id?(n==='sPh'?'ph':''):'hidden');
 }
 
-async function generate(){
+async function gen(){
   const brand=document.getElementById('brand').value;
-  const category=document.getElementById('category').value;
+  const cat=document.getElementById('cat').value;
   const model=document.getElementById('model').value.trim();
-  const appearance=document.getElementById('appearance').value.trim();
-  const funcStatus=document.getElementById('funcStatus').value.trim();
+  const appear=document.getElementById('appear').value.trim();
+  const func=document.getElementById('func').value.trim();
   const notes=document.getElementById('notes').value.trim();
-  const acc=selectedAcc.size?[...selectedAcc].join('、'):'無附件';
+  const acc=[...accs].join('、')||'無附件';
 
-  if(!brand||!category||!model||!selectedGrade){
-    alert('請填寫廠牌、類型、型號，並選擇等級！');return;
-  }
+  if(!brand||!cat||!model||!grade){alert('請填寫廠牌、類型、型號，並選擇等級！');return;}
 
   const btn=document.getElementById('genBtn');
-  btn.disabled=true;btn.classList.add('loading');
-  btn.querySelector('.btn-text').textContent='AI 生成中...';
-  show('stateLoading');
+  btn.disabled=true; btn.classList.add('loading');
+  document.getElementById('btnTxt').textContent='AI 生成中...';
+  show('sLd');
 
-  const prompt=`你是 Second 3C 次數科技的蝦皮上架專員，請根據以下商品資訊，產出完整的蝦皮上架標題與商品描述。
+  const prompt=`你是 Second 3C 次數科技的蝦皮上架專員。根據以下商品資訊，輸出蝦皮上架標題與描述。
 
 商品資訊：
-- 廠牌：${brand}
-- 類型：${category}
-- 型號/規格：${model}
-- 等級：${selectedGrade}級（A=近全新、B=輕微使用痕跡、C=明顯刮傷、D=損傷明顯）
-- 外觀描述：${appearance||'無特別說明'}
-- 功能狀況：${funcStatus||'功能正常'}
-- 附件：${acc}
-- 備注：${notes||'無'}
+廠牌：${brand} / 類型：${cat} / 型號：${model}
+等級：${grade}級（A近全新 B輕微痕跡 C明顯刮傷 D損傷明顯）
+外觀：${appear||'無特別說明'} / 功能：${func||'功能正常'} / 附件：${acc}
+備注：${notes||'無'}
 
-請輸出以下格式（用 === 分隔），不要加任何多餘說明：
+請嚴格按照以下格式輸出，不要加其他說明：
 
-TITLE===
-（蝦皮標題，含廠牌型號等級，加1~2個吸引人的關鍵字，60字以內）
+TITLE:
+[在這裡填蝦皮標題，含廠牌型號等級關鍵字，60字以內]
 
-DESCRIPTION===
+DESCRIPTION:
 【商品規格】
-（廠牌、類型、型號規格）
+[廠牌/類型/型號規格]
 
 【外觀說明】
-（根據等級和外觀描述，誠實說明外觀現況）
+[依等級如實說明外觀現況]
 
 【功能說明】
-（功能狀況，是否經過第三方軟體檢測）
+[功能狀況與檢測說明]
 
 【隨附配件】
-（列出附件）
+[列出附件]
 
 【保固說明】
 出貨日起現況保固90天，電池屬消耗品不在保固範圍內。
 
 【注意事項】
-本商品為二手商品，外觀已如實描述，請買家確認接受後再下單。如有任何疑問歡迎先詢問，謝謝您的理解與支持！
-
-語氣：誠實、親切、專業，讓買家安心。`;
+本商品為二手商品，外觀已如實描述，請買家確認接受後再下單。如有疑問歡迎先詢問，謝謝支持！`;
 
   try{
     const res=await fetch('/api/generate',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
     });
     const data=await res.json();
-    const text=data.content?.find(c=>c.type==='text')?.text||'';
 
-    const titleMatch=text.match(/TITLE===\s*([\s\S]*?)(?=DESCRIPTION===|$)/);
-    const descMatch=text.match(/DESCRIPTION===\s*([\s\S]*?)$/);
+    if(data.error){
+      document.getElementById('errMsg').textContent='⚠️ '+data.error;
+      show('sEr');
+    } else {
+      const raw=data.content?.find(c=>c.type==='text')?.text||'';
 
-    document.querySelector('#outTitle .txt').textContent=titleMatch?titleMatch[1].trim():'';
-    document.querySelector('#outDesc .txt').textContent=descMatch?descMatch[1].trim():text.trim();
-    show('stateDone');
+      // Robust parsing - handle multiple possible formats
+      let titleText='', descText='';
+
+      const titleMatch = raw.match(/TITLE:\s*\n([\s\S]*?)(?=\nDESCRIPTION:|$)/i);
+      const descMatch  = raw.match(/DESCRIPTION:\s*\n([\s\S]*?)$/i);
+
+      titleText = titleMatch ? titleMatch[1].trim() : '';
+      descText  = descMatch  ? descMatch[1].trim()  : '';
+
+      // Fallback: if parsing failed, show raw output split at double newline
+      if(!titleText && !descText && raw) {
+        const parts = raw.split(/\n\n+/);
+        titleText = parts[0]?.trim() || '';
+        descText  = parts.slice(1).join('\n\n').trim() || raw.trim();
+      }
+
+      document.getElementById('tTxt').textContent = titleText;
+      document.getElementById('dTxt').textContent = descText;
+      show('sDn');
+    }
   }catch(e){
-    show('stateError');
+    document.getElementById('errMsg').textContent='⚠️ 連線錯誤：'+e.message;
+    show('sEr');
   }
 
-  btn.disabled=false;btn.classList.remove('loading');
-  btn.querySelector('.btn-text').textContent='🔄 重新產生';
+  btn.disabled=false; btn.classList.remove('loading');
+  document.getElementById('btnTxt').textContent='🔄 重新產生';
 }
 
-function copyBlock(elId,btn){
-  const text=document.querySelector('#'+elId+' .txt').textContent.trim();
-  navigator.clipboard.writeText(text).then(()=>{
-    btn.textContent='已複製！';btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('copied');},2000);
+function cp(id,btn){
+  const txt=document.getElementById(id==='oTitle'?'tTxt':'dTxt').textContent.trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='已複製！';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('ok');},2000);
   });
 }
-
-function copyAll(){
-  const title=document.querySelector('#outTitle .txt').textContent.trim();
-  const desc=document.querySelector('#outDesc .txt').textContent.trim();
-  const all=`【標題】\n${title}\n\n【描述】\n${desc}`;
-  const btn=document.getElementById('copyAllBtn');
-  navigator.clipboard.writeText(all).then(()=>{
-    btn.textContent='✅ 已複製到剪貼簿！';
-    setTimeout(()=>{btn.textContent='✅ 複製完整描述（標題 + 內容）';},2000);
+function cpAll(){
+  const t=document.getElementById('tTxt').textContent.trim();
+  const d=document.getElementById('dTxt').textContent.trim();
+  const btn=document.getElementById('caBtn');
+  navigator.clipboard.writeText(`【標題】\n${t}\n\n【描述】\n${d}`).then(()=>{
+    btn.textContent='✅ 已複製到剪貼簿！';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='✅ 複製完整描述（標題 + 內容）';btn.classList.remove('ok');},2000);
   });
 }
 </script>
