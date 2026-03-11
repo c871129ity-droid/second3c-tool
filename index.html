@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)file:///Users/user/Downloads/index.html -->
-<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Second 3C｜AI 上架描述產生器</title>
 <style>
@@ -40,13 +40,12 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .grade-btn{border:1.5px solid var(--border);background:var(--surface2);border-radius:10px;padding:10px 4px;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--sans)}
 .grade-btn .gl{display:block;font-size:20px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
 .grade-btn .gd{font-size:10px;color:var(--text3);line-height:1.3}
-.grade-btn:hover{border-color:var(--border2);background:#f0ece6}
 .grade-btn.selected{border-color:var(--accent);background:var(--accent-light)}
 .grade-btn.selected .gl{color:var(--accent)}.grade-btn.selected .gd{color:var(--accent);opacity:.7}
 .accessory-grid{display:flex;flex-wrap:wrap;gap:8px}
-.acc-tag{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;transition:all .15s;user-select:none;font-family:var(--sans);color:var(--text)}
+.acc-tag{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;transition:all .15s;font-family:var(--sans);color:var(--text)}
 .acc-tag.checked{background:var(--accent2-light);border-color:var(--accent2);color:var(--accent2);font-weight:600}
-.btn-generate{width:100%;background:var(--text);color:#f5f3ee;border:none;border-radius:12px;padding:14px 24px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-top:8px;letter-spacing:.5px}
+.btn-generate{width:100%;background:var(--text);color:#f5f3ee;border:none;border-radius:12px;padding:14px 24px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-top:8px}
 .btn-generate:hover{background:#2d2a26;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
 .btn-generate:disabled{background:var(--border2);color:var(--text3);cursor:not-allowed;transform:none;box-shadow:none}
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
@@ -54,14 +53,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 @keyframes spin{to{transform:rotate(360deg)}}
 .output-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--text3)}
 .placeholder-icon{font-size:40px;opacity:.3}.placeholder-text{font-size:13px;text-align:center;line-height:1.7}
-.output-hidden{display:none}
+.hidden{display:none}
 .status-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:18px}
-.status-generating{background:var(--accent2-light);color:var(--accent2);border:1px solid rgba(45,90,142,.2)}
 .status-done{background:var(--green-light);color:var(--green);border:1px solid rgba(42,122,75,.2)}
 .status-error{background:#fff5f5;color:#dc2626;border:1px solid #fecaca}
 .status-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
-.pulse{animation:pulse 1.2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .output-block{margin-bottom:20px}
 .output-block-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
 .output-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.85;white-space:pre-wrap;color:var(--text);position:relative;padding-right:72px}
@@ -71,13 +67,12 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .copy-btn.copied{background:var(--green);color:white;border-color:var(--green)}
 .copy-all-btn{width:100%;background:var(--green-light);border:1.5px solid var(--green);border-radius:10px;padding:12px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--green);cursor:pointer;transition:all .15s}
 .copy-all-btn:hover{background:var(--green);color:white}
-.copy-all-btn.copied{background:var(--green);color:white}
+.loading-center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px;color:var(--accent2)}
+.big-spinner{width:32px;height:32px;border:3px solid #eef3fa;border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite}
 .tips{background:#f7f5f0;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:16px}
 .tips-title{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;font-family:var(--mono)}
 .tip-item{font-size:12px;color:var(--text2);margin-bottom:6px;padding-left:14px;position:relative;line-height:1.5}
 .tip-item::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:10px}
-.loading-center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px;color:var(--accent2)}
-.big-spinner{width:32px;height:32px;border:3px solid #eef3fa;border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite}
 </style>
 </head>
 <body>
@@ -90,7 +85,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 </div>
 
 <div class="main">
-  <!-- LEFT -->
   <div>
     <div class="card">
       <div class="card-header">
@@ -189,7 +183,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     </div>
   </div>
 
-  <!-- RIGHT -->
   <div>
     <div class="card" style="min-height:500px">
       <div class="card-header">
@@ -205,18 +198,18 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <div class="placeholder-text">填寫左側商品資訊<br>點擊「產生上架描述」後<br>結果會顯示在這裡</div>
       </div>
 
-      <div id="stateLoading" class="output-hidden">
+      <div id="stateLoading" class="hidden">
         <div class="loading-center">
           <div class="big-spinner"></div>
           <div style="font-size:13px;font-weight:500">AI 正在撰寫上架描述...</div>
         </div>
       </div>
 
-      <div id="stateError" class="output-hidden">
+      <div id="stateError" class="hidden">
         <div class="status-bar status-error">⚠️ 發生錯誤，請稍後重試</div>
       </div>
 
-      <div id="stateDone" class="output-hidden">
+      <div id="stateDone" class="hidden">
         <div class="status-bar status-done">
           <div class="status-dot"></div>
           ✅ 描述產生完成！可直接複製貼到蝦皮後台
@@ -224,13 +217,15 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <div class="output-block">
           <div class="output-block-label">蝦皮標題</div>
           <div class="output-box output-title-box" id="outTitle">
-            <button class="copy-btn" id="copyTitle" onclick="copyBlock(&#39;outTitle&#39;,&#39;copyTitle&#39;)">複製</button>
+            <button class="copy-btn" onclick="copyBlock('outTitle',this)">複製</button>
+            <span class="txt"></span>
           </div>
         </div>
         <div class="output-block">
           <div class="output-block-label">商品描述</div>
           <div class="output-box" id="outDesc" style="min-height:200px">
-            <button class="copy-btn" id="copyDesc" onclick="copyBlock(&#39;outDesc&#39;,&#39;copyDesc&#39;)">複製</button>
+            <button class="copy-btn" onclick="copyBlock('outDesc',this)">複製</button>
+            <span class="txt"></span>
           </div>
         </div>
         <button class="copy-all-btn" id="copyAllBtn" onclick="copyAll()">
@@ -242,46 +237,48 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 </div>
 
 <script>
-let selectedGrade = '';
-let selectedAcc = new Set();
+let selectedGrade='';
+let selectedAcc=new Set();
 
-function selectGrade(btn) {
-  document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('selected'));
+function selectGrade(btn){
+  document.querySelectorAll('.grade-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  selectedGrade = btn.dataset.grade;
+  selectedGrade=btn.dataset.grade;
 }
 
-function toggleAcc(btn) {
-  const val = btn.dataset.val;
-  if (selectedAcc.has(val)) { selectedAcc.delete(val); btn.classList.remove('checked'); }
-  else { selectedAcc.add(val); btn.classList.add('checked'); }
+function toggleAcc(btn){
+  const val=btn.dataset.val;
+  if(selectedAcc.has(val)){selectedAcc.delete(val);btn.classList.remove('checked');}
+  else{selectedAcc.add(val);btn.classList.add('checked');}
 }
 
-function setState(s) {
-  ['Placeholder','Loading','Error','Done'].forEach(n => {
-    document.getElementById('state'+n).className = s===n ? (n==='Placeholder'?'output-placeholder':'') : 'output-hidden';
+function show(id){
+  ['statePlaceholder','stateLoading','stateError','stateDone'].forEach(n=>{
+    document.getElementById(n).className = n===id
+      ? (n==='statePlaceholder'?'output-placeholder':'')
+      : 'hidden';
   });
 }
 
-async function generate() {
-  const brand = document.getElementById('brand').value;
-  const category = document.getElementById('category').value;
-  const model = document.getElementById('model').value.trim();
-  const appearance = document.getElementById('appearance').value.trim();
-  const funcStatus = document.getElementById('funcStatus').value.trim();
-  const notes = document.getElementById('notes').value.trim();
-  const acc = selectedAcc.size ? [...selectedAcc].join('、') : '無附件';
+async function generate(){
+  const brand=document.getElementById('brand').value;
+  const category=document.getElementById('category').value;
+  const model=document.getElementById('model').value.trim();
+  const appearance=document.getElementById('appearance').value.trim();
+  const funcStatus=document.getElementById('funcStatus').value.trim();
+  const notes=document.getElementById('notes').value.trim();
+  const acc=selectedAcc.size?[...selectedAcc].join('、'):'無附件';
 
-  if (!brand || !category || !model || !selectedGrade) {
-    alert('請填寫廠牌、類型、型號，並選擇等級！'); return;
+  if(!brand||!category||!model||!selectedGrade){
+    alert('請填寫廠牌、類型、型號，並選擇等級！');return;
   }
 
-  const btn = document.getElementById('genBtn');
-  btn.disabled = true; btn.classList.add('loading');
-  btn.querySelector('.btn-text').textContent = 'AI 生成中...';
-  setState('Loading');
+  const btn=document.getElementById('genBtn');
+  btn.disabled=true;btn.classList.add('loading');
+  btn.querySelector('.btn-text').textContent='AI 生成中...';
+  show('stateLoading');
 
-  const prompt = `你是 Second 3C 次數科技的蝦皮上架專員，請根據以下商品資訊，產出完整的蝦皮上架標題與商品描述。
+  const prompt=`你是 Second 3C 次數科技的蝦皮上架專員，請根據以下商品資訊，產出完整的蝦皮上架標題與商品描述。
 
 商品資訊：
 - 廠牌：${brand}
@@ -319,66 +316,51 @@ DESCRIPTION===
 
 語氣：誠實、親切、專業，讓買家安心。`;
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
       })
     });
-    const data = await res.json();
-    const text = data.content?.find(c => c.type === 'text')?.text || '';
+    const data=await res.json();
+    const text=data.content?.find(c=>c.type==='text')?.text||'';
 
-    const titleMatch = text.match(/TITLE===\s*([\s\S]*?)(?=DESCRIPTION===|$)/);
-    const descMatch = text.match(/DESCRIPTION===\s*([\s\S]*?)$/);
-    const titleText = titleMatch ? titleMatch[1].trim() : '';
-    const descText = descMatch ? descMatch[1].trim() : text.trim();
+    const titleMatch=text.match(/TITLE===\s*([\s\S]*?)(?=DESCRIPTION===|$)/);
+    const descMatch=text.match(/DESCRIPTION===\s*([\s\S]*?)$/);
 
-    const titleEl = document.getElementById('outTitle');
-    const descEl = document.getElementById('outDesc');
-
-    // Set text (keep copy buttons)
-    titleEl.childNodes[0] && titleEl.childNodes[0].nodeType === 3 && titleEl.removeChild(titleEl.childNodes[0]);
-    titleEl.insertBefore(document.createTextNode(titleText), titleEl.firstChild);
-    descEl.childNodes[0] && descEl.childNodes[0].nodeType === 3 && descEl.removeChild(descEl.childNodes[0]);
-    descEl.insertBefore(document.createTextNode(descText), descEl.firstChild);
-
-    setState('Done');
-  } catch(e) {
-    setState('Error');
+    document.querySelector('#outTitle .txt').textContent=titleMatch?titleMatch[1].trim():'';
+    document.querySelector('#outDesc .txt').textContent=descMatch?descMatch[1].trim():text.trim();
+    show('stateDone');
+  }catch(e){
+    show('stateError');
   }
 
-  btn.disabled = false; btn.classList.remove('loading');
-  btn.querySelector('.btn-text').textContent = '🔄 重新產生';
+  btn.disabled=false;btn.classList.remove('loading');
+  btn.querySelector('.btn-text').textContent='🔄 重新產生';
 }
 
-function copyBlock(elId, btnId) {
-  const el = document.getElementById(elId);
-  const btn = document.getElementById(btnId);
-  // get text excluding button
-  let text = '';
-  el.childNodes.forEach(n => { if(n.nodeType === 3) text += n.textContent; });
-  navigator.clipboard.writeText(text.trim()).then(() => {
-    btn.textContent = '已複製！'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+function copyBlock(elId,btn){
+  const text=document.querySelector('#'+elId+' .txt').textContent.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='已複製！';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('copied');},2000);
   });
 }
 
-function copyAll() {
-  let title = '', desc = '';
-  document.getElementById('outTitle').childNodes.forEach(n => { if(n.nodeType===3) title += n.textContent; });
-  document.getElementById('outDesc').childNodes.forEach(n => { if(n.nodeType===3) desc += n.textContent; });
-  const all = `【標題】\n${title.trim()}\n\n【描述】\n${desc.trim()}`;
-  const btn = document.getElementById('copyAllBtn');
-  navigator.clipboard.writeText(all).then(() => {
-    btn.textContent = '✅ 已複製到剪貼簿！'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '✅ 複製完整描述（標題 + 內容）'; btn.classList.remove('copied'); }, 2000);
+function copyAll(){
+  const title=document.querySelector('#outTitle .txt').textContent.trim();
+  const desc=document.querySelector('#outDesc .txt').textContent.trim();
+  const all=`【標題】\n${title}\n\n【描述】\n${desc}`;
+  const btn=document.getElementById('copyAllBtn');
+  navigator.clipboard.writeText(all).then(()=>{
+    btn.textContent='✅ 已複製到剪貼簿！';
+    setTimeout(()=>{btn.textContent='✅ 複製完整描述（標題 + 內容）';},2000);
   });
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
